@@ -5,11 +5,10 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public float range = 3;
-    public Enemy prefab;
-    
 
 
-    public void Spawn()
+
+    public void Spawn(Enemy prefab)
     {
         var pos = transform.position + UnityEngine.Random.insideUnitSphere * range;
         var enemy = Instantiate(prefab, pos, Quaternion.identity);

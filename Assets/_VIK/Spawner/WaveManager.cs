@@ -1,18 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using OneLine;
 using UnityEngine;
+using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 
-// have a list of spawner objects
-// each n wave enable new spawner
-// new wave begins when all enemies are dead
 
 [System.Serializable]
 public class Wave
 {
-    public int enemies = 1;
     public float spawnRate = 1;
     public bool addHole = false;
     [OneLine] public List<EnemyRate> enemyTypes;
@@ -21,8 +20,8 @@ public class Wave
 [System.Serializable]
 public class EnemyRate
 {
-    public GameObject enemy;
-    [Min(1)] public float chance = 1;
+    public Enemy type;
+    [Min(1)] public float number = 1;
 }
 
 public class WaveManager : MonoBehaviour
@@ -34,6 +33,8 @@ public class WaveManager : MonoBehaviour
     
     private int currentWave = 0;
     private int currentSpawners;
+    public bool waveInProgress = false;
+    public static UnityEvent<int> OnWaveFinished = new UnityEvent<int>();
 
     private void Awake()
     {
@@ -43,8 +44,20 @@ public class WaveManager : MonoBehaviour
         enemies = new List<Enemy>();
     }
 
+    private void Update()
+    {
+        // if wave is not in progress and there are no enemies
+        if (!waveInProgress && enemies.Count == 0)
+        {
+            OnWaveFinished.Invoke(currentWave);
+            // start new wave
+            StartCoroutine(WaveRoutine());
+        }
+    }
+
     IEnumerator WaveRoutine()
     {
+        waveInProgress = true;
         // get current wave deep copy
         var wave = waves[currentWave];
 
@@ -53,18 +66,24 @@ public class WaveManager : MonoBehaviour
             AddHole();
         }
         
+        // get all enemies in wave
+        var enemies = wave.enemyTypes.SelectMany(enemy => Enumerable.Repeat(enemy.type, (int)enemy.number)).ToList();
+        
         // spawn enemies
-        for (int i = 0; i < wave.enemies; i++)
+        while (enemies.Count > 0)
         {
             // get random spawner
             var spawner = enabledSpawners[Random.Range(0, enabledSpawners.Count)];
             // get random enemy
-            var enemy = wave.enemyTypes[Random.Range(0, wave.enemyTypes.Count)];
+            var enemy = enemies[Random.Range(0, enemies.Count)];
             // spawn enemy
-            //spawner.Spawn(enemy.enemy);
-            // wait for spawn rate
-            yield return new WaitForSeconds(wave.spawnRate);
+            spawner.Spawn(enemy);
+            // remove enemy from list
+            enemies.Remove(enemy);
+            // wait for next spawn
+            yield return new WaitForSeconds(1f/wave.spawnRate);
         }
+        print("Wave finished spawning");
     }
 
     void AddHole()

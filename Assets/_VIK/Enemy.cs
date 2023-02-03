@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        if(target == null)target = GameObject.FindWithTag("Target").transform;
         _agent = GetComponent<NavMeshAgent>();
     }
 
