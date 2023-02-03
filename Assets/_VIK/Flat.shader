@@ -4,7 +4,11 @@ Shader "Flat"
 {
 	Properties
 	{
-		
+		_TextureSample0("Texture Sample 0", 2D) = "white" {}
+		_Shade("Shade", Range( 0 , 1)) = 0.5
+		_AmbientColor("Ambient Color", Color) = (0,0,0,0)
+		[HideInInspector] _texcoord( "", 2D ) = "white" {}
+
 	}
 	
 	SubShader
@@ -19,7 +23,7 @@ Shader "Flat"
 		ENDCG
 		Blend Off
 		AlphaToMask Off
-		Cull Back
+		Cull Off
 		ColorMask RGBA
 		ZWrite On
 		ZTest LEqual
@@ -52,6 +56,7 @@ Shader "Flat"
 			{
 				float4 vertex : POSITION;
 				float4 color : COLOR;
+				float4 ase_texcoord : TEXCOORD0;
 				float3 ase_normal : NORMAL;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
@@ -62,6 +67,7 @@ Shader "Flat"
 				#ifdef ASE_NEEDS_FRAG_WORLD_POSITION
 				float3 worldPos : TEXCOORD0;
 				#endif
+				float4 ase_texcoord1 : TEXCOORD1;
 				float3 ase_normal : NORMAL;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
@@ -69,6 +75,10 @@ Shader "Flat"
 
 			//This is a late directive
 			
+			uniform float4 _AmbientColor;
+			uniform sampler2D _TextureSample0;
+			uniform float4 _TextureSample0_ST;
+			uniform float _Shade;
 
 			
 			v2f vert ( appdata v )
@@ -78,7 +88,11 @@ Shader "Flat"
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 
+				o.ase_texcoord1.xy = v.ase_texcoord.xy;
 				o.ase_normal = v.ase_normal;
+				
+				//setting value to unused interpolator channels and avoid initialization warnings
+				o.ase_texcoord1.zw = 0;
 				float3 vertexValue = float3(0, 0, 0);
 				#if ASE_ABSOLUTE_VERTEX_POS
 				vertexValue = v.vertex.xyz;
@@ -105,12 +119,13 @@ Shader "Flat"
 				#ifdef ASE_NEEDS_FRAG_WORLD_POSITION
 				float3 WorldPosition = i.worldPos;
 				#endif
+				float2 uv_TextureSample0 = i.ase_texcoord1.xy * _TextureSample0_ST.xy + _TextureSample0_ST.zw;
 				float3 worldSpaceLightDir = UnityWorldSpaceLightDir(WorldPosition);
 				float dotResult5 = dot( i.ase_normal , worldSpaceLightDir );
-				float4 temp_cast_0 = (dotResult5).xxxx;
+				float4 lerpResult8 = lerp( _AmbientColor , tex2D( _TextureSample0, uv_TextureSample0 ) , (_Shade + (dotResult5 - -1.0) * (1.0 - _Shade) / (1.0 - -1.0)));
 				
 				
-				finalColor = temp_cast_0;
+				finalColor = lerpResult8;
 				return finalColor;
 			}
 			ENDCG
@@ -122,13 +137,22 @@ Shader "Flat"
 }
 /*ASEBEGIN
 Version=19100
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;0,0;Float;False;True;-1;2;ASEMaterialInspector;100;5;Flat;0770190933193b94aaa3065e307002fa;True;Unlit;0;0;Unlit;2;False;True;0;1;False;;0;False;;0;1;False;;0;False;;True;0;False;;0;False;;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;RenderType=Opaque=RenderType;True;2;False;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;0;;0;0;Standard;1;Vertex Position,InvertActionOnDeselection;1;0;0;1;True;False;;False;0
-Node;AmplifyShaderEditor.SamplerNode;1;-884.5854,-0.1897361;Inherit;True;Property;_TextureSample0;Texture Sample 0;0;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.NormalVertexDataNode;3;-871.9446,-375.8158;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.WorldSpaceLightDirHlpNode;4;-918.8974,-197.0322;Inherit;False;False;1;0;FLOAT;0;False;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
-Node;AmplifyShaderEditor.DotProductOpNode;5;-568.5538,-260.2385;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT;0
-WireConnection;0;0;5;0
+Node;AmplifyShaderEditor.SamplerNode;1;-835.5854,24.81026;Inherit;True;Property;_TextureSample0;Texture Sample 0;0;0;Create;True;0;0;0;False;0;False;-1;None;245a1abb4cdd54b4f8a7f29f07f17597;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.LerpOp;8;-104.5985,55.5061;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.ColorNode;9;-400.5985,-72.4939;Inherit;False;Property;_AmbientColor;Ambient Color;2;0;Create;True;0;0;0;False;0;False;0,0,0,0;0.254223,0.2062567,0.4245283,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.NormalVertexDataNode;3;-978.9446,133.1842;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.WorldSpaceLightDirHlpNode;4;-1025.897,311.9678;Inherit;False;False;1;0;FLOAT;0;False;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
+Node;AmplifyShaderEditor.DotProductOpNode;5;-675.5538,248.7615;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.TFHCRemapNode;6;-391.4487,257.5921;Inherit;False;5;0;FLOAT;0;False;1;FLOAT;-1;False;2;FLOAT;1;False;3;FLOAT;0;False;4;FLOAT;1;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;7;-708.5985,371.5061;Inherit;False;Property;_Shade;Shade;1;0;Create;True;0;0;0;False;0;False;0.5;0.773;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;118,59;Float;False;True;-1;2;ASEMaterialInspector;100;5;Flat;0770190933193b94aaa3065e307002fa;True;Unlit;0;0;Unlit;2;False;True;0;1;False;;0;False;;0;1;False;;0;False;;True;0;False;;0;False;;False;False;False;False;False;False;False;False;False;True;0;False;;True;True;2;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;RenderType=Opaque=RenderType;True;2;False;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;0;;0;0;Standard;1;Vertex Position,InvertActionOnDeselection;1;0;0;1;True;False;;False;0
+WireConnection;8;0;9;0
+WireConnection;8;1;1;0
+WireConnection;8;2;6;0
 WireConnection;5;0;3;0
 WireConnection;5;1;4;0
+WireConnection;6;0;5;0
+WireConnection;6;3;7;0
+WireConnection;0;0;8;0
 ASEEND*/
-//CHKSM=27A0B1E0428275E6ED90DA836B7B12B8A831AF24
+//CHKSM=022F5BC6719FCA27D34EFC455A979D01EA1159CF
