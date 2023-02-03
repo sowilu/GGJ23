@@ -308,6 +308,17 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7256233a-a39b-49a7-825d-6cdd5026b470"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""b"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""2ef8a11a-5ae0-4ac5-95d6-20984f4f00ee"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
