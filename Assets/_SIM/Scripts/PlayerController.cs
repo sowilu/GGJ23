@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     
     Vector2 _movedir;
     Vector2 _lookdir;
+    private bool _canPlant;
     
     
     private void Start()
@@ -50,8 +52,7 @@ public class PlayerController : MonoBehaviour
         {
             Plant();
             
-            if (anim != null)
-                anim.SetTrigger("action");
+            
         }
 
         if (anim != null)
@@ -64,11 +65,21 @@ public class PlayerController : MonoBehaviour
 
     void Plant()
     {
-        print("Planting");
-        if (towerInHand != null)
+        if (_canPlant && towerInHand != null)
         {
+            print("Planting");
+
+            if (anim != null)
+            {
+                anim.SetTrigger("action");
+            }
             Instantiate(towerInHand, transform.position + transform.forward, Quaternion.identity);
         }
+        else
+        {
+            
+        }
+       
     }
     
 
@@ -100,5 +111,17 @@ public class PlayerController : MonoBehaviour
     {
         if(other.transform.CompareTag("Ground"))
             _isGrounded = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Tower"))
+            _canPlant = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Tower"))
+            _canPlant = false;
     }
 }
