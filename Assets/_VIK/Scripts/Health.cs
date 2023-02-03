@@ -1,3 +1,5 @@
+using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +11,7 @@ public class Health : MonoBehaviour
     public UnityEvent<int> onDamage = new UnityEvent<int>();
     public UnityEvent onDie = new UnityEvent();
     public bool autoDestroy = true;
+    public bool tweenDamage = true;
     
     public int hp
     {
@@ -23,6 +26,22 @@ public class Health : MonoBehaviour
             {
                 Die();
             }
+        }
+    }
+
+    private void Start()
+    {
+        if (tweenDamage)
+        {
+            onDamage.AddListener(damage =>
+            {
+                // short white flash material tween
+                var mat = GetComponent<Renderer>().material;
+                mat.DOColor(Color.white, 0.1f).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+                {
+                    mat.color = Color.white;
+                });
+            });
         }
     }
 

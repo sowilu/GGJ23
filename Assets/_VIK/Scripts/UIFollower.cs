@@ -16,9 +16,10 @@ public class UIFollower : MonoBehaviour
     private void LateUpdate()
     {
         if (target == null) return;
+       
         
-        var screenPoint = Camera.main.WorldToScreenPoint(target.position);
-        rt.position = screenPoint + offset;
+        rt.position = Camera.main.WorldToScreenPoint(target.position) + offset;
         
+
     }
 }
