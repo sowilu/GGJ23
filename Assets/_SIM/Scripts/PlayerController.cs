@@ -17,12 +17,20 @@ public class PlayerController : MonoBehaviour
     
     Vector2 _movedir;
     Vector2 _lookdir;
+    
+    
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _input = GetComponent<PlayerInput>();
     }
 
+    public void TakeDamage(float damage)
+    {
+        print("Player took " + damage + " damage!");
+        anim.SetTrigger("impact");
+    }
+    
     private void Update()
     {
         _movedir = _input.actions["move"].ReadValue<Vector2>();
@@ -65,15 +73,18 @@ public class PlayerController : MonoBehaviour
         _rb.velocity = new Vector3(_movedir.x * speed, _rb.velocity.y, _movedir.y * speed);
         
         //rotate smoothly toward look dir
-        Vector3 lookDir = new Vector3(_movedir.x, 0, _movedir.y);
-        if (lookDir != Vector3.zero)
+        if (_movedir != Vector2.zero)
         {
+            Vector3 lookDir = new Vector3(_movedir.x, 0, _movedir.y);
             Quaternion targetRotation = Quaternion.LookRotation(lookDir);
-            Quaternion newRotation = Quaternion.Lerp(_rb.rotation, targetRotation, turnSpeed * Time.deltaTime);
-            _rb.MoveRotation(newRotation);
+
+            if (targetRotation != _rb.rotation)
+            {
+                Quaternion newRotation = Quaternion.Lerp(_rb.rotation, targetRotation, turnSpeed * Time.deltaTime);
+                _rb.MoveRotation(newRotation);
+            }
         }
     }
-    
 
     private void OnCollisionEnter(Collision other)
     {
