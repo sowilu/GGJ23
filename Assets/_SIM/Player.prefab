@@ -163,10 +163,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7034203447839764293, guid: b553be47c350aa84ea473896b9e6e5fb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 03820a3a5ef4db449900cc1dd5116735, type: 2}
+    - target: {fileID: -6268238552560437597, guid: b553be47c350aa84ea473896b9e6e5fb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 03820a3a5ef4db449900cc1dd5116735, type: 2}
+    - target: {fileID: -4396642182433536433, guid: b553be47c350aa84ea473896b9e6e5fb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 03820a3a5ef4db449900cc1dd5116735, type: 2}
+    - target: {fileID: -4115403732716516455, guid: b553be47c350aa84ea473896b9e6e5fb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 03820a3a5ef4db449900cc1dd5116735, type: 2}
     - target: {fileID: 919132149155446097, guid: b553be47c350aa84ea473896b9e6e5fb, type: 3}
       propertyPath: m_Name
       value: Char@Run Forward
       objectReference: {fileID: 0}
+    - target: {fileID: 5241284212654878085, guid: b553be47c350aa84ea473896b9e6e5fb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 03820a3a5ef4db449900cc1dd5116735, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b553be47c350aa84ea473896b9e6e5fb, type: 3}
 --- !u!4 &3187156796279516759 stripped

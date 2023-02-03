@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
             _rb.MoveRotation(newRotation);
         }
     }
+    
 
     private void OnCollisionEnter(Collision other)
     {
