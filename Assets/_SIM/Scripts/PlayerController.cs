@@ -3,6 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public BaseTower towerInHand;
+
     public float speed = 10.0f;
     public float turnSpeed = 25.0f;
     public float jumpHeight = 2.0f;
@@ -62,6 +65,10 @@ public class PlayerController : MonoBehaviour
     void Plant()
     {
         print("Planting");
+        if (towerInHand != null)
+        {
+            Instantiate(towerInHand, transform.position + transform.forward, Quaternion.identity);
+        }
     }
     
 

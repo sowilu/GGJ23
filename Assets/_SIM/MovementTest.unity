@@ -410,6 +410,10 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 3148499122388803884}
+    - target: {fileID: 3148499123453286850, guid: 23853e4657d358648bc4d6a5ebc170bf, type: 3}
+      propertyPath: towerInHand
+      value: 
+      objectReference: {fileID: 2136981435029190242, guid: 1b329b9b2a0da3441a8336eead0deb95, type: 3}
     - target: {fileID: 3148499123453286851, guid: 23853e4657d358648bc4d6a5ebc170bf, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -454,8 +458,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3148499123453286860, guid: 23853e4657d358648bc4d6a5ebc170bf, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 3148499123453286862, guid: 23853e4657d358648bc4d6a5ebc170bf, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3148499123453286862, guid: 23853e4657d358648bc4d6a5ebc170bf, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8852707892903261229, guid: 23853e4657d358648bc4d6a5ebc170bf, type: 3}
