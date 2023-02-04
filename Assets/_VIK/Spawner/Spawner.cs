@@ -1,11 +1,37 @@
 using System;
+using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     public float range = 3;
-    public bool isActive = false;
+    
+    bool _isActive;
+    public bool isActive
+    {
+        get => _isActive;
+        set
+        {
+            _isActive = value;
+            if (value)
+            {
+                OnActivate();
+            }
+        }
+    }
+
+    public Transform hole;
+
+    private void Start()
+    {
+        hole.localScale = Vector3.zero;
+    }
+
+    public void OnActivate()
+    {
+        hole.DOScale(Vector3.one, 2f);
+    }
 
 
     public void Spawn(Enemy prefab)

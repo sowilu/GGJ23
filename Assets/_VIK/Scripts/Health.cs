@@ -12,6 +12,8 @@ public class Health : MonoBehaviour
     public UnityEvent onDeath = new UnityEvent();
     public bool autoDestroy = true;
     public bool tweenDamage = true;
+    public GameObject deathEffect;
+    public GameObject damageEffect;
     
     public int hp
     {
@@ -20,7 +22,7 @@ public class Health : MonoBehaviour
         {
             _hp = value;
             var damage = maxHP - _hp;
-            onDamage.Invoke(damage);
+            Damage(damage);
             
             if (_hp <= 0)
             {
@@ -45,10 +47,23 @@ public class Health : MonoBehaviour
         }
     }
 
+    void Damage(int damage)
+    {
+        onDamage.Invoke(damage);
+        if (damageEffect != null) Instantiate(damageEffect, transform.position, Quaternion.identity);
+    }
+
     public void Die()
     {
         onDeath.Invoke();
-        if( autoDestroy )
-            Destroy(gameObject);
+        if(deathEffect != null) Instantiate(deathEffect, transform.position, Quaternion.identity);
+
+
+        if (!autoDestroy) return;
+        foreach (var ps in GetComponentsInChildren<ParticleSystem>())
+        {
+            ps.transform.parent = null;
+        }
+        Destroy(gameObject);
     }
 }
