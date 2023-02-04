@@ -6,6 +6,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public float range = 3;
+    public GameObject spawnEffect;
     
     bool _isActive;
     public bool isActive
@@ -31,6 +32,7 @@ public class Spawner : MonoBehaviour
     public void OnActivate()
     {
         hole.DOScale(Vector3.one, 2f);
+        if (spawnEffect != null) Instantiate(spawnEffect, transform.position, Quaternion.identity);
     }
 
 

@@ -13,15 +13,22 @@ MonoBehaviour:
   m_Name: Waves
   m_EditorClassIdentifier: 
   waves:
-  - spawnRate: 1
+  - spawnRate: 0.3
     addHole: 1
     enemyTypes:
     - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
       number: 5
   - spawnRate: 1
-    addHole: 1
+    addHole: 0
     enemyTypes:
     - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
       number: 5
     - type: {fileID: 7579384103788614420, guid: b81ba6f6ff9a9904e98a50e76e9d9c1c, type: 3}
       number: 5
+  - spawnRate: 2
+    addHole: 1
+    enemyTypes:
+    - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
+      number: 100
+    - type: {fileID: 7579384103788614420, guid: b81ba6f6ff9a9904e98a50e76e9d9c1c, type: 3}
+      number: 50

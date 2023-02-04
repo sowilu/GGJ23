@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 3
+  spawnEffect: {fileID: 8636783337182980348, guid: 489fc78972486f34b8b35b7e1c7527e3, type: 3}
   hole: {fileID: 1565772771157242120}
 --- !u!1001 &8541195120156807904
 PrefabInstance:

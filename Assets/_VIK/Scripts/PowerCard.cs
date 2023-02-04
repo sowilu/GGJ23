@@ -39,6 +39,7 @@ public class PowerCard : MonoBehaviour
         {
             print("Clicked Power");
             UpgradeScreen.instance.Close();
+            PowerManager.instance.ApplyPower(powerData);
         }
     }
 }

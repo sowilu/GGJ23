@@ -7,6 +7,7 @@ public class PowerManager : MonoBehaviour
     public int selectCount = 3;
     
     public UpgradeScreen upgradeScreen;
+    public WaveManager waveManager;
     
     public static PowerManager instance;
     
@@ -15,10 +16,6 @@ public class PowerManager : MonoBehaviour
         instance = this;
     }
     
-    public void Start()
-    {
-        OfferPowers();
-    }
 
     public void OfferPowers()
     {
@@ -29,11 +26,15 @@ public class PowerManager : MonoBehaviour
             var index = Random.Range(0, powers.Count);
             pow.Add(powers[index]);
         }
+        upgradeScreen.Open();
         upgradeScreen.ShowPowers(pow);
     }
     
-    public void ApplyPower( PowerData power)
+    public async void ApplyPower( PowerData power)
     {
         // apply power
+        await new WaitForSeconds(2f);
+        waveManager.StartNewWave();
+        
     }
 }

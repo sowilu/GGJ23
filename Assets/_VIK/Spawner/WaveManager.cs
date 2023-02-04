@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ public class WaveManager : MonoBehaviour
     public List<Spawner> spawners;
     public List<Spawner> enabledSpawners;
     public static List<Enemy> enemies;
+    public bool canStartWave = true;
     
     [Header("Wave UI")]
     [SerializeField]AudioClip waveStartSound;
@@ -23,7 +25,7 @@ public class WaveManager : MonoBehaviour
 
     public int currentWave = 0;
     private int currentSpawners;
-    public bool waveInProgress = false;
+    public bool waveInProgress = true;
     public static UnityEvent<int> OnWaveFinished = new UnityEvent<int>();
 
     private void Awake()
@@ -34,15 +36,41 @@ public class WaveManager : MonoBehaviour
         enemies = new List<Enemy>();
     }
 
+    private void Start()
+    {
+
+    }
+
     private void Update()
     {
         // if wave is not in progress and there are no enemies
         if (!waveInProgress && enemies.Count == 0)
         {
-            OnWaveFinished.Invoke(currentWave);
-            // start new wave
-            StartCoroutine(WaveRoutine());
+            waveInProgress = true; // COULD BE MAJOR BUG
+            FinishWave();
         }
+    }
+
+    async void FinishWave()
+    {
+        currentWave++;
+        OnWaveFinished.Invoke(currentWave);
+
+        await new WaitForSeconds(2f);
+        PowerManager.instance.OfferPowers();
+    }
+    
+    public void StartNewWave()
+    {
+        if (currentWave >= enemyWaves.waves.Count)
+        {
+            print("Game Completed !");
+            return;
+        }
+        
+        announceText.ShowMessage($"Wave {currentWave + 1}");
+            // start new wave
+        StartCoroutine(WaveRoutine());
     }
 
     IEnumerator WaveRoutine()
@@ -76,8 +104,6 @@ public class WaveManager : MonoBehaviour
         }
         print("Wave finished spawning");
         waveInProgress = false;
-        currentWave++;
-        announceText.ShowMessage($"Wave {currentWave + 1}");
     }
 
 
