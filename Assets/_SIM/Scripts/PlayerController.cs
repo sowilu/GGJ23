@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     
     PlayerInput _input;
     private bool _isGrounded;
+    public float wannaJumpMemory;
+    public float maxWannaJumpMemory = 0.2f;
+    public AudioClip jumpSound;
     
     Vector2 _movedir;
     Vector2 _lookdir;
@@ -33,6 +36,8 @@ public class PlayerController : MonoBehaviour
     public bool _canPlant;
     private bool _invincible;
     private AudioSource soundEffects;
+    public Vector3 velocity;
+    public float gravity = 25;
     
     private void Start()
     {
@@ -79,7 +84,10 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         _movedir = _input.actions["move"].ReadValue<Vector2>();
-        
+
+        velocity.x = _movedir.x * speed;
+        velocity.z = _movedir.y * speed;
+
         if (choiceMode)
         {
             if (resourcesInHand > 0)
@@ -105,15 +113,10 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            //if player is on the ground
-            if (_isGrounded)
+            if (_input.actions["a"].triggered)
             {
-                //if player presses jump
-                if (_input.actions["a"].triggered)
-                {
-                    //add force to player
-                    _rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
-                }
+                //add force to player
+                wannaJumpMemory = maxWannaJumpMemory;
             }
     
             if (_input.actions["b"].triggered && _isGrounded)
@@ -127,6 +130,9 @@ public class PlayerController : MonoBehaviour
                 anim.SetFloat("speed", _movedir.magnitude);
             }
         }
+        
+        
+        wannaJumpMemory -= Time.deltaTime;
     }
 
     void Plant()
@@ -154,7 +160,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = new Vector3(_movedir.x * speed, _rb.velocity.y, _movedir.y * speed);
+       // _rb.velocity = new Vector3(_movedir.x * speed, _rb.velocity.y, _movedir.y * speed);
         
         //rotate smoothly toward look dir
         if (_movedir != Vector2.zero)
@@ -168,7 +174,38 @@ public class PlayerController : MonoBehaviour
                 _rb.MoveRotation(newRotation);
             }
         }
+        
+        // gravity
+
+
+        // shoot ray down from center to extend of player to check if grounded
+        Ray ray = new Ray(transform.position, Vector3.down);
+        if (Physics.Raycast(ray, out RaycastHit hit, 1.1f))
+        {
+            if (hit.transform.CompareTag("Ground"))
+            {
+                if (wannaJumpMemory > 0)
+                {
+                    Jump();
+                }
+            }
+        } else
+        {
+            velocity.y -= gravity * Time.deltaTime;
+        }
+
+        _rb.velocity = velocity;
     }
+
+    public void Jump()
+    {
+        var hSpeed = HeightToVelocity( jumpHeight);
+        velocity.y = hSpeed;
+        Audio.Play(jumpSound);
+        wannaJumpMemory = 0;
+    }
+    
+    
 
     private void OnCollisionEnter(Collision other)
     {
@@ -193,5 +230,10 @@ public class PlayerController : MonoBehaviour
     {
         if(other.CompareTag("Tower"))
             _canPlant = false;
+    }
+    
+    float HeightToVelocity(float height)
+    {
+        return Mathf.Sqrt(2 * height * gravity);
     }
 }

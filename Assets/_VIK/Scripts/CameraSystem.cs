@@ -11,6 +11,7 @@ public class CameraSystem : MonoBehaviour
     public float distance = 15;
     static  Transform camTransform;
     public Vector3 offset;
+    public bool ignoreYAxis;
 
     private void Awake()
     {
@@ -23,6 +24,9 @@ public class CameraSystem : MonoBehaviour
             return;
         
         Vector3 centerPoint = GetCenterPoint();
+        
+        if( ignoreYAxis )
+            centerPoint.y = 0;
 
         transform.position = centerPoint + offset;
     }
@@ -30,14 +34,16 @@ public class CameraSystem : MonoBehaviour
     private Vector3 GetCenterPoint()
     {
         if (targets.Count == 1)
+        {
             return targets[0].position;
-        
-        // get average position with vectors
+        }
+
         var bounds = new Bounds(targets[0].position, Vector3.zero);
         for (int i = 0; i < targets.Count; i++)
         {
             bounds.Encapsulate(targets[i].position);
         }
+
         return bounds.center;
     }
 
