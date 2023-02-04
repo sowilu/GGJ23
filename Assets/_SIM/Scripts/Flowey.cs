@@ -76,6 +76,7 @@ public class Flowey : MonoBehaviour
 
             playerHands.towerInHand = tower1;
             //TODO: turn on seed model on back
+            playerHands.seed.SetActive(true);
         }
     }
     
@@ -88,6 +89,7 @@ public class Flowey : MonoBehaviour
 
             playerHands.towerInHand = tower2;
             //TODO: turn on seed model on back
+            playerHands.seed.SetActive(true);
         }
     }
     
@@ -100,6 +102,7 @@ public class Flowey : MonoBehaviour
 
             playerHands.towerInHand = tower3;
             //TODO: turn on seed model on back
+            playerHands.seed.SetActive(true);
         }
     }
 

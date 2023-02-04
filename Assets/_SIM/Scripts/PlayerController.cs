@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject seed;
+    
     public int maxResourcesInHand = 10;
     public int resourcesInHand;
     public BaseTower towerInHand;
@@ -132,6 +134,7 @@ public class PlayerController : MonoBehaviour
             Instantiate(towerInHand, transform.position + transform.forward, Quaternion.identity);
 
             towerInHand = null;
+            seed.SetActive(false);
         }
         else
         {
