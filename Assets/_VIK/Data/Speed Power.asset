@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a00e13ae00c4556b2aa8b3e70dd9427, type: 3}
   m_Name: Speed Power
   m_EditorClassIdentifier: 
-  displayName: asdasdasd
-  description: asdasdasd
+  displayName: Iron Shoes
+  description: +15% move speed
   icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}

@@ -162,6 +162,7 @@ MonoBehaviour:
   deathEffect: {fileID: 8926366327809570836, guid: e9bf285564b7f2844861d247b9f097d1, type: 3}
   dieOnHit: 1
   dieOnPlayerHit: 0
+  explosionEffect: {fileID: 3944680772952323432, guid: 25d6fc07cba92ce4db4461716100da93, type: 3}
 --- !u!114 &1123613109
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Health))]
@@ -11,9 +13,14 @@ public class Enemy : MonoBehaviour
     public GameObject deathEffect;
     public bool dieOnHit;
     public bool dieOnPlayerHit;
-    
+    public GameObject explosionEffect;
 
     private NavMeshAgent _agent;
+
+    private void OnDestroy()
+    {
+        Instantiate(explosionEffect, transform.position +   Vector3.up * 0.01f, Quaternion.Euler(-90,Random.Range(0,360f),0));
+    }
 
     void Start()
     {
