@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,7 @@ public class Enemy : MonoBehaviour
     Health health;
     public GameObject deathEffect;
     public bool dieOnHit;
+    public bool dieOnPlayerHit;
     
 
     private NavMeshAgent _agent;
@@ -38,5 +40,18 @@ public class Enemy : MonoBehaviour
     public void Attack()
     {
         print( "Attacking");
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && dieOnPlayerHit)
+        {
+            health.Die();
+        }
+        
+        if (collision.gameObject.CompareTag("Target") && dieOnHit)
+        {
+            health.Die();
+        }
     }
 }

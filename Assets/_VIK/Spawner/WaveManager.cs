@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -18,6 +19,7 @@ public class WaveManager : MonoBehaviour
     
     [Header("Wave UI")]
     [SerializeField]AudioClip waveStartSound;
+    [SerializeField]AnnounceText announceText;
 
     public int currentWave = 0;
     private int currentSpawners;
@@ -75,6 +77,7 @@ public class WaveManager : MonoBehaviour
         print("Wave finished spawning");
         waveInProgress = false;
         currentWave++;
+        announceText.ShowMessage($"Wave {currentWave + 1}");
     }
 
 
