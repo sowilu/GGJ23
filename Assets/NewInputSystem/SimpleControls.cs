@@ -330,6 +330,17 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7b2a25b0-8a16-4bde-8c00-8df72c329e46"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""b"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""2ef8a11a-5ae0-4ac5-95d6-20984f4f00ee"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
@@ -363,6 +374,17 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""9243d117-c233-45a9-bd44-59481f125924"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""y"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""3a1df7bd-bb6a-4f05-a43e-4438b52c5b0e"",
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
@@ -387,6 +409,17 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""608304f2-f4a6-4fce-9b41-35eb4822feb4"",
                     ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""x"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fecc3f26-1ad3-4364-bc45-a10fe7eaaf3f"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
