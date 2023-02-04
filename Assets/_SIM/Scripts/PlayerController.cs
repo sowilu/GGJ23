@@ -46,6 +46,19 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public bool TakeResource()
+    {
+        if (resourcesInHand < maxResourcesInHand)
+        {
+            resourcesInHand++;
+            
+            //TODO: update UI
+            return true;
+        }
+
+        return false;
+    }
+
     void MakeVunerable()
     {
         _invincible = false;
@@ -92,7 +105,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (_input.actions["b"].triggered)
+        if (_input.actions["b"].triggered && _isGrounded)
         {
             Plant();
         }
