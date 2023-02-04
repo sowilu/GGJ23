@@ -51,6 +51,8 @@ public class BaseTower : MonoBehaviour
             var bullet = Instantiate(bulletPrefab, cannon.position, Quaternion.identity);
             bullet.GetComponent<Bullet>().target = target;
             _audioSource.PlayOneShot(shootSound, Random.Range(0.9f, 1.2f));
+            
+            transform.DOScaleY( 1.2f, 0.1f).SetLoops(2, LoopType.Yoyo);
         }
     }
 
