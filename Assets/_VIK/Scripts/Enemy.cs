@@ -51,6 +51,7 @@ public class Enemy : MonoBehaviour
         
         if (collision.gameObject.name == ("Flowey") && dieOnHit)
         {
+            collision.gameObject.GetComponent<Health>().hp -= 1;
             health.Die();
         }
     }
