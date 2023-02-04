@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,7 +17,8 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        if(target == null)target = GameObject.FindWithTag("Target").transform;
+
+        if(target == null)target = GameObject.Find("Flowey").transform;;
         _agent = GetComponent<NavMeshAgent>();
         
         health = GetComponent<Health>();
@@ -29,27 +29,19 @@ public class Enemy : MonoBehaviour
     {
         _agent.SetDestination(target.position);
         _agent.speed = speed;
-
-        if (Vector3.Distance(transform.position, target.position) < 1f)
-        {
-            Attack();
-        }
     }
 
-
-    public void Attack()
-    {
-        print( "Attacking");
-    }
+    
 
     private void OnCollisionEnter(Collision collision)
     {
+        print( "Enemy collided with " + collision.gameObject.name );
         if (collision.gameObject.CompareTag("Player") && dieOnPlayerHit)
         {
             health.Die();
         }
         
-        if (collision.gameObject.CompareTag("Target") && dieOnHit)
+        if (collision.gameObject.name == ("Flowey") && dieOnHit)
         {
             health.Die();
         }
