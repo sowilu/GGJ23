@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 25.0f;
     public float jumpHeight = 2.0f;
     public Animator anim;
+    public float invincibilityTime = 2.0f;
     
     private Rigidbody _rb;
     PlayerInput _input;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     Vector2 _movedir;
     Vector2 _lookdir;
     private bool _canPlant;
+    private bool _invincible;
     
     
     private void Start()
@@ -29,8 +31,19 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        print("Player took " + damage + " damage!");
-        anim.SetTrigger("impact");
+        if (!_invincible)
+        {
+            print("Player took " + damage + " damage!");
+            anim.SetTrigger("impact");
+            _invincible = true;
+            Invoke(nameof(MakeVunerable), invincibilityTime);
+        }
+        
+    }
+
+    void MakeVunerable()
+    {
+        _invincible = false;
     }
     
     private void Update()
@@ -113,7 +126,8 @@ public class PlayerController : MonoBehaviour
             _isGrounded = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Tower"))
             _canPlant = true;

@@ -12,19 +12,18 @@ public class BaseTower : MonoBehaviour
     
     public float coolDown = 1f;
 
-    protected OptiRingMesh _mesh;
+    public OptiRingMesh _mesh;
     protected SphereCollider _sphereCollider;
     protected List<Transform> _inRangeEnemies = new List<Transform>();
     
     void Start()
     {
+        TowerManager.inst.AddTower(transform);
         transform.DOScale(Vector3.one, 0.3f).ChangeStartValue(new Vector3(1, 0, 1)).SetEase(Ease.OutExpo);
         
         _sphereCollider = GetComponent<SphereCollider>();
         _sphereCollider.isTrigger = true;
         _sphereCollider.radius = range;
-        _mesh = GetComponent<OptiRingMesh>();
-
         _mesh.radius = range;
         
         InvokeRepeating(nameof(Activate), coolDown, coolDown);
