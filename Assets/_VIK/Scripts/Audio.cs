@@ -12,7 +12,7 @@ public class Audio : MonoBehaviour
     }
 
     
-    public static void Play( AudioClip clip, float volume )
+    public static void Play( AudioClip clip, float volume  = 1)
     {
         source.PlayOneShot( clip, volume );
     }

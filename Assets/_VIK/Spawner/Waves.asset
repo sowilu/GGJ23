@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38621ecbbde64725928bfb3ba8e8a853, type: 3}
+  m_Name: Waves
+  m_EditorClassIdentifier: 
+  waves:
+  - spawnRate: 1
+    addHole: 1
+    enemyTypes:
+    - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
+      number: 5
+  - spawnRate: 1
+    addHole: 1
+    enemyTypes:
+    - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
+      number: 5
+    - type: {fileID: 7579384103788614420, guid: b81ba6f6ff9a9904e98a50e76e9d9c1c, type: 3}
+      number: 5

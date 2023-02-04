@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     private int _hp;
     
     public UnityEvent<int> onDamage = new UnityEvent<int>();
-    public UnityEvent onDie = new UnityEvent();
+    public UnityEvent onDeath = new UnityEvent();
     public bool autoDestroy = true;
     public bool tweenDamage = true;
     
@@ -47,7 +47,7 @@ public class Health : MonoBehaviour
 
     public void Die()
     {
-        onDie.Invoke();
+        onDeath.Invoke();
         if( autoDestroy )
             Destroy(gameObject);
     }

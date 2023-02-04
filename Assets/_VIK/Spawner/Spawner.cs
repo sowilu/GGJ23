@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public float range = 3;
-
+    public bool isActive = false;
 
 
     public void Spawn(Enemy prefab)
@@ -22,7 +22,8 @@ public class Spawner : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        Handles.color = Color.red;
+        if (isActive) Handles.color = Color.red; 
+        else Handles.color = Color.green;
         Handles.DrawWireDisc(transform.position, Vector3.up, range);
     }
 #endif

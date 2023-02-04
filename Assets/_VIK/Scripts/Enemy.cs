@@ -1,12 +1,16 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-// navmesh agent follows target 
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Health))]
 public class Enemy : MonoBehaviour
 {
     public Transform target;
     public float speed = 3;
-
+    Health health;
+    public GameObject deathEffect;
+    public bool dieOnHit;
+    
 
     private NavMeshAgent _agent;
 
@@ -14,6 +18,9 @@ public class Enemy : MonoBehaviour
     {
         if(target == null)target = GameObject.FindWithTag("Target").transform;
         _agent = GetComponent<NavMeshAgent>();
+        
+        health = GetComponent<Health>();
+        health.onDeath.AddListener(() => { WaveManager.enemies.Remove(this);});
     }
 
     void Update()

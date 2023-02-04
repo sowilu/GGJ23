@@ -1,37 +1,25 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using OneLine;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 
 
-[System.Serializable]
-public class Wave
-{
-    public float spawnRate = 1;
-    public bool addHole = false;
-    [OneLine] public List<EnemyRate> enemyTypes;
-}
-
-[System.Serializable]
-public class EnemyRate
-{
-    public Enemy type;
-    [Min(1)] public float number = 1;
-}
 
 public class WaveManager : MonoBehaviour
 {
-    public List<Wave> waves;
+    [Header("Spawners")]
+    public EnemyWaves enemyWaves;
     public List<Spawner> spawners;
     public List<Spawner> enabledSpawners;
     public static List<Enemy> enemies;
     
-    private int currentWave = 0;
+    [Header("Wave UI")]
+    [SerializeField]AudioClip waveStartSound;
+
+    public int currentWave = 0;
     private int currentSpawners;
     public bool waveInProgress = false;
     public static UnityEvent<int> OnWaveFinished = new UnityEvent<int>();
@@ -57,9 +45,10 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator WaveRoutine()
     {
+        Audio.Play( waveStartSound );
         waveInProgress = true;
         // get current wave deep copy
-        var wave = waves[currentWave];
+        var wave = enemyWaves.waves[currentWave];
 
         if (wave.addHole)
         {
@@ -84,12 +73,17 @@ public class WaveManager : MonoBehaviour
             yield return new WaitForSeconds(1f/wave.spawnRate);
         }
         print("Wave finished spawning");
+        waveInProgress = false;
+        currentWave++;
     }
+
+
 
     void AddHole()
     {
-        // to enabled spawners add one mroe that is not in the list
-        var spawner = spawners.Except(enabledSpawners).ToList()[Random.Range(0, spawners.Count - enabledSpawners.Count)];
-        enabledSpawners.Add(spawner);
+        var newHole =
+            spawners.Except(enabledSpawners).ToList()[Random.Range(0, spawners.Count - enabledSpawners.Count)];
+        newHole.isActive = true;
+        enabledSpawners.Add(newHole);
     }
 }
