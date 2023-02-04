@@ -1,8 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
+[SelectionBase]
+[DisallowMultipleComponent]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Health))]
 public class Enemy : MonoBehaviour

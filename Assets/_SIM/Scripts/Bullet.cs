@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -10,13 +7,23 @@ public class Bullet : MonoBehaviour
     
     public float speed = 10f;
     public int damage = 5;
-    
+
+    public float ttl = 2f;
+
+    private void Start()
+    {
+        transform.LookAt(target.position);
+    }
+
     void Update()
     {
-        if(target != null)
+        transform.position += transform.forward * speed * Time.deltaTime;
+
+        if (ttl <= 0)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.position + Vector3.up * 0.5f, speed * Time.deltaTime);
+            Die();
         }
+        ttl -= Time.deltaTime;
     }
 
     private void OnCollisionEnter(Collision other)
@@ -30,10 +37,15 @@ public class Bullet : MonoBehaviour
             }
             else
             {
-                Destroy(other.gameObject);
+               // Destroy(other.gameObject);
             }
-            Destroy(gameObject);
-        }
 
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }

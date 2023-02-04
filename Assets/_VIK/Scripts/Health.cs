@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
     public bool tweenDamage = true;
     public GameObject deathEffect;
     public GameObject damageEffect;
-    
+
     public int hp
     {
         get => _hp;
@@ -33,23 +33,16 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
-        if (tweenDamage)
-        {
-            onDamage.AddListener(damage =>
-            {
-                // short white flash material tween
-                var mat = GetComponent<Renderer>().material;
-                mat.DOColor(Color.white, 0.1f).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
-                {
-                    mat.color = Color.white;
-                });
-            });
-        }
+
     }
 
     void Damage(int damage)
     {
         onDamage.Invoke(damage);
+        if (tweenDamage)
+        {
+            transform.DOScale( 1.3f, 0.1f).SetLoops(2, LoopType.Yoyo);
+        }
         if (damageEffect != null) Instantiate(damageEffect, transform.position, Quaternion.identity);
     }
 

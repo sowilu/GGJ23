@@ -1,10 +1,15 @@
 using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
+    public TextMeshProUGUI resourceText;
+    public AudioClip clip;
+    
     public GameObject seed;
     
     public int maxResourcesInHand = 10;
@@ -38,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource soundEffects;
     public Vector3 velocity;
     public float gravity = 25;
+    private bool _givingOut;
     
     private void Start()
     {
@@ -70,6 +76,7 @@ public class PlayerController : MonoBehaviour
             resourcesInHand++;
             
             //TODO: update UI
+            resourceText.text = $"{resourcesInHand} / {maxResourcesInHand}";
             return true;
         }
 
@@ -90,11 +97,12 @@ public class PlayerController : MonoBehaviour
 
         if (choiceMode)
         {
-            if (resourcesInHand > 0)
+            if (resourcesInHand > 0 && !_givingOut)
             {
-                Flowey.inst.AddResources(resourcesInHand);
+                //Flowey.inst.AddResources(resourcesInHand);
                 //TODO: play sound
-                resourcesInHand = 0;
+                _givingOut = true;
+                StartCoroutine(GiveOut());
             }
             
             if (_input.actions["x"].triggered)
@@ -133,6 +141,22 @@ public class PlayerController : MonoBehaviour
         
         
         wannaJumpMemory -= Time.deltaTime;
+    }
+
+
+    IEnumerator GiveOut()
+    {
+        while (resourcesInHand > 0)
+        {
+            resourcesInHand--;
+            resourceText.text = $"{resourcesInHand} / {maxResourcesInHand}";
+            Flowey.inst.AddResources(1);
+            soundEffects.PlayOneShot(clip, Random.Range(0.9f, 1.2f));
+
+            yield return new WaitForSeconds(clip.length);
+        }
+
+        _givingOut = false;
     }
 
     void Plant()

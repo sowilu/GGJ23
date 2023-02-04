@@ -10,6 +10,7 @@ TagManager:
   - Tower
   - Flowey
   - Root
+  - Bullet
   layers:
   - Default
   - TransparentFX

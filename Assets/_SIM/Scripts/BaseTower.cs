@@ -66,7 +66,7 @@ public class BaseTower : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         //check if enemy
-        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player") )
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
         {
             _inRangeEnemies.Remove(other.transform);
         }
@@ -78,6 +78,12 @@ public class BaseTower : MonoBehaviour
         {
             //target first enemy
             var target = _inRangeEnemies[0];
+
+            if (target == null)
+            {
+                _inRangeEnemies.RemoveAt(0);
+                return;
+            }
             
             //rotate body towards target but only on y axis
             var targetRotation = Quaternion.LookRotation(target.position - transform.position);
