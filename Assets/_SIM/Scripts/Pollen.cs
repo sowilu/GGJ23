@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class Pollen : MonoBehaviour
 {
+    public AudioClip soundEffect;
     public float fallSpeed = 1;
     public float collectSpeed = 3;
         
     bool inAir = true;
     private Transform target;
+    private AudioSource audio;
     
+
     void Update()
     {
         //fall until ground is reached
@@ -42,6 +45,7 @@ public class Pollen : MonoBehaviour
             if (player.TakeResource())
             {
                 ResourceScatterer.inst.count--;
+                player.PlayEffect(soundEffect);
                 Destroy(gameObject);
             }
         }

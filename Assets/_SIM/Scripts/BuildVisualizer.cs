@@ -10,7 +10,7 @@ public class BuildVisualizer : MonoBehaviour
     
     void Update()
     {
-        if (player.towerInHand == null)
+        if (player.towerInHand == null || !player._canPlant)
         {
             root.SetActive(false);
             tower.SetActive(false);
@@ -24,7 +24,7 @@ public class BuildVisualizer : MonoBehaviour
         
         //rotate root from player to nearest
         root.transform.position = nearest.position;
-        root.transform.rotation = Quaternion.LookRotation( player.transform.position - nearest.position);
+        root.transform.rotation = Quaternion.LookRotation( player.transform.position + player.transform.forward - nearest.position);
         root.transform.localScale = new Vector3(1, 1, Vector3.Distance(nearest.position, player.transform.position)/6);
         
         

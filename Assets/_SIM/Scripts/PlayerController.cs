@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,14 +28,22 @@ public class PlayerController : MonoBehaviour
     
     Vector2 _movedir;
     Vector2 _lookdir;
-    private bool _canPlant;
-    private bool _invincible;
     
+    [HideInInspector]
+    public bool _canPlant;
+    private bool _invincible;
+    private AudioSource soundEffects;
     
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _input = GetComponent<PlayerInput>();
+        soundEffects = GetComponent<AudioSource>();
+    }
+    
+    public void PlayEffect(AudioClip clip)
+    {
+        soundEffects.PlayOneShot(clip, Random.Range(0.9f, 1.2f));
     }
 
     public void TakeDamage(float damage)
@@ -92,33 +101,32 @@ public class PlayerController : MonoBehaviour
             {
                 Flowey.inst.BuySlot3();
             }
-            return;
+            
         }
-        
-        
-        
-        //if player is on the ground
-        if (_isGrounded)
+        else
         {
-            //if player presses jump
-            if (_input.actions["a"].triggered)
+            //if player is on the ground
+            if (_isGrounded)
             {
-                //add force to player
-                _rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+                //if player presses jump
+                if (_input.actions["a"].triggered)
+                {
+                    //add force to player
+                    _rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+                }
+            }
+    
+            if (_input.actions["b"].triggered && _isGrounded)
+            {
+                Plant();
+            }
+    
+            if (anim != null)
+            {
+                anim.SetBool("grounded", _isGrounded);
+                anim.SetFloat("speed", _movedir.magnitude);
             }
         }
-
-        if (_input.actions["b"].triggered && _isGrounded)
-        {
-            Plant();
-        }
-
-        if (anim != null)
-        {
-            anim.SetBool("grounded", _isGrounded);
-            anim.SetFloat("speed", _movedir.magnitude);
-        }
-        
     }
 
     void Plant()

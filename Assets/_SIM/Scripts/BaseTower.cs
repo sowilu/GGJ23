@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 
 public class BaseTower : MonoBehaviour
 {
+    public AudioClip shootSound;
+    
     [Header("Shooting")]
     public float range = 5f;
     public GameObject bulletPrefab;
@@ -21,8 +23,10 @@ public class BaseTower : MonoBehaviour
     protected SphereCollider _sphereCollider;
     protected List<Transform> _inRangeEnemies = new List<Transform>();
     
+    AudioSource _audioSource;
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         TowerManager.inst.AddTower(transform);
         transform.DOScale(Vector3.one, 0.3f).ChangeStartValue(new Vector3(1, 0, 1)).SetEase(Ease.OutExpo);
         
@@ -46,6 +50,7 @@ public class BaseTower : MonoBehaviour
             //var target = _inRangeEnemies[Random.Range(0, _inRangeEnemies.Count)];
             var bullet = Instantiate(bulletPrefab, cannon.position, Quaternion.identity);
             bullet.GetComponent<Bullet>().target = target;
+            _audioSource.PlayOneShot(shootSound, Random.Range(0.9f, 1.2f));
         }
     }
 
