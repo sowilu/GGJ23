@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Flowey : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class Flowey : MonoBehaviour
     public Transform player;
     public float range = 4;
     public PlayerController playerHands;
-    
+
+    public AudioClip cashier;
     
     [Header("UI")]
     public GameObject choicesMenu;
@@ -38,7 +40,7 @@ public class Flowey : MonoBehaviour
     public BaseTower tower3;
     public int slot3Price;
 
-    
+    private AudioSource _audioSource;
     int resourceCount = 0;
     
     private void Awake()
@@ -59,6 +61,8 @@ public class Flowey : MonoBehaviour
         price1.text = slot1Price.ToString();
         price2.text = slot2Price.ToString();
         price3.text = slot3Price.ToString();
+        
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void AddResources(int amount)
@@ -77,6 +81,8 @@ public class Flowey : MonoBehaviour
             playerHands.towerInHand = tower1;
             //TODO: turn on seed model on back
             playerHands.seed.SetActive(true);
+            
+            _audioSource.PlayOneShot(cashier);
         }
     }
     
@@ -90,6 +96,7 @@ public class Flowey : MonoBehaviour
             playerHands.towerInHand = tower2;
             //TODO: turn on seed model on back
             playerHands.seed.SetActive(true);
+            _audioSource.PlayOneShot(cashier);
         }
     }
     
@@ -103,6 +110,7 @@ public class Flowey : MonoBehaviour
             playerHands.towerInHand = tower3;
             //TODO: turn on seed model on back
             playerHands.seed.SetActive(true);
+            _audioSource.PlayOneShot(cashier);
         }
     }
 

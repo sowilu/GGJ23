@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     public TextMeshProUGUI resourceText;
     public AudioClip clip;
-    
+    public AudioClip plantGrow;
     public GameObject seed;
     
     public int maxResourcesInHand = 10;
@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour
                 anim.SetTrigger("action");
             }
             Instantiate(towerInHand, transform.position + transform.forward, Quaternion.identity);
-
+            soundEffects.PlayOneShot(plantGrow);
             towerInHand = null;
             seed.SetActive(false);
         }

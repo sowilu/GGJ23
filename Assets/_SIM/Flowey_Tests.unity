@@ -1352,6 +1352,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5d06ceea504bb4fb982959a1369e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1002942589 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2498513775003364823, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
+  m_PrefabInstance: {fileID: 3345586128527946835}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1112968438
 GameObject:
   m_ObjectHideFlags: 0
@@ -3515,6 +3520,102 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3019471852672038765, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
   m_PrefabInstance: {fileID: 3345586128527946835}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &543450652776284996
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002942589}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &3148499122388803883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3535,6 +3636,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: bf2242035dfd6b7498f29baf7617338a, type: 3}
     - target: {fileID: 3148499123453286850, guid: 23853e4657d358648bc4d6a5ebc170bf, type: 3}
+      propertyPath: plantGrow
+      value: 
+      objectReference: {fileID: 8300000, guid: 7afa4b4d373463e44a4d88e51eb903a2, type: 3}
+    - target: {fileID: 3148499123453286850, guid: 23853e4657d358648bc4d6a5ebc170bf, type: 3}
       propertyPath: jumpHeight
       value: 3
       objectReference: {fileID: 0}
@@ -3542,6 +3647,10 @@ PrefabInstance:
       propertyPath: resourceText
       value: 
       objectReference: {fileID: 159981855}
+    - target: {fileID: 3148499123453286850, guid: 23853e4657d358648bc4d6a5ebc170bf, type: 3}
+      propertyPath: invincibilityTime
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3148499123453286851, guid: 23853e4657d358648bc4d6a5ebc170bf, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3668,6 +3777,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 276397140}
     - target: {fileID: 3345586127874805902, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
+      propertyPath: cashier
+      value: 
+      objectReference: {fileID: 8300000, guid: f288169a4fcd79645b6dd284e413eacc, type: 3}
+    - target: {fileID: 3345586127874805902, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
       propertyPath: resources
       value: 
       objectReference: {fileID: 714615497}
@@ -3751,6 +3864,10 @@ PrefabInstance:
     - target: {fileID: 5149596765229203622, guid: 9e69cdd7c059f0e43a1e92d5e43a050a, type: 3}
       propertyPath: m_Name
       value: TowerManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149596765229203623, guid: 9e69cdd7c059f0e43a1e92d5e43a050a, type: 3}
+      propertyPath: rootLength
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5149596765229203623, guid: 9e69cdd7c059f0e43a1e92d5e43a050a, type: 3}
       propertyPath: towers.Array.data[0]
