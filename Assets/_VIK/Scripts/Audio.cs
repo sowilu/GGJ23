@@ -11,9 +11,11 @@ public class Audio : MonoBehaviour
         source = GetComponent<AudioSource>();
     }
 
-    
-    public static void Play( AudioClip clip, float volume  = 1)
+
+    public static void Play(AudioClip clip, float volume = 1, float pitch = 1)
     {
-        source.PlayOneShot( clip, volume );
+        source.pitch = pitch;
+        source.PlayOneShot(clip, volume);
     }
+
 }
