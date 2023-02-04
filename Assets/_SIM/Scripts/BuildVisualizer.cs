@@ -23,8 +23,9 @@ public class BuildVisualizer : MonoBehaviour
         var nearest = TowerManager.inst.GetNearest(player.transform.position + player.transform.forward);
         
         //rotate root from player to nearest
-        root.transform.rotation = Quaternion.LookRotation(nearest.position - player.transform.position);
-        root.transform.localScale = new Vector3(0, 0, Vector3.Distance(nearest.position, player.transform.position)/6);
+        root.transform.position = nearest.position;
+        root.transform.rotation = Quaternion.LookRotation( player.transform.position - nearest.position);
+        root.transform.localScale = new Vector3(1, 1, Vector3.Distance(nearest.position, player.transform.position)/6);
         
         
         //place tower in front of the player

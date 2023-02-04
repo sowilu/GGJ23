@@ -54,6 +54,13 @@ public class Flowey : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        price1.text = slot1Price.ToString();
+        price2.text = slot2Price.ToString();
+        price3.text = slot3Price.ToString();
+    }
+
     public void AddResources(int amount)
     {
         resourceCount += amount;
@@ -62,20 +69,38 @@ public class Flowey : MonoBehaviour
     
     public void BuySlot1()
     {
-        if (playerHands.towerInHand == null)
+        if (playerHands.towerInHand == null && resourceCount >= slot1Price)
         {
+            resourceCount -= slot1Price;
+            resources.text = resourceCount.ToString();
+
             playerHands.towerInHand = tower1;
+            //TODO: turn on seed model on back
         }
     }
     
     public void BuySlot2()
     {
-        
+        if (playerHands.towerInHand == null && resourceCount >= slot2Price)
+        {
+            resourceCount -= slot2Price;
+            resources.text = resourceCount.ToString();
+
+            playerHands.towerInHand = tower2;
+            //TODO: turn on seed model on back
+        }
     }
     
     public void BuySlot3()
     {
-        
+        if (playerHands.towerInHand == null && resourceCount >= slot3Price)
+        {
+            resourceCount -= slot3Price;
+            resources.text = resourceCount.ToString();
+
+            playerHands.towerInHand = tower3;
+            //TODO: turn on seed model on back
+        }
     }
 
     public bool InRange(Vector3 position)
