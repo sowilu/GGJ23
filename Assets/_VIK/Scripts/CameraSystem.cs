@@ -10,6 +10,7 @@ public class CameraSystem : MonoBehaviour
     public List<Transform> targets;
     public float distance = 15;
     static  Transform camTransform;
+    public Vector3 offset;
 
     private void Awake()
     {
@@ -23,7 +24,7 @@ public class CameraSystem : MonoBehaviour
         
         Vector3 centerPoint = GetCenterPoint();
 
-        transform.position = centerPoint;
+        transform.position = centerPoint + offset;
     }
     
     private Vector3 GetCenterPoint()
