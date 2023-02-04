@@ -42,6 +42,8 @@ public class BaseTower : MonoBehaviour
         {
             //target first enemy
             var target = _inRangeEnemies[0];
+            //taRGET RANDOM ENEMY
+            //var target = _inRangeEnemies[Random.Range(0, _inRangeEnemies.Count)];
             var bullet = Instantiate(bulletPrefab, cannon.position, Quaternion.identity);
             bullet.GetComponent<Bullet>().target = target;
         }

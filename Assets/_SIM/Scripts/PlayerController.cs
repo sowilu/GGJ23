@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public bool choiceMode = false;
     
     private Rigidbody _rb;
+    
     PlayerInput _input;
     private bool _isGrounded;
     

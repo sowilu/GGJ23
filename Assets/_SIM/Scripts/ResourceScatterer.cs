@@ -40,7 +40,7 @@ public class ResourceScatterer : MonoBehaviour
         if (count < maxCount)
         {
             //spawn resource at random position
-            Vector3 pos = new Vector3(Random.Range(-radius, radius), height, Random.Range(-radius, radius));
+            Vector3 pos =transform.position + new Vector3(Random.Range(-radius, radius), height, Random.Range(-radius, radius));
             Instantiate(resource, pos, Quaternion.identity);
         }
     }

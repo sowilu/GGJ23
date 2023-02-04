@@ -1353,6 +1353,61 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!1 &1154536070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1154536072}
+  - component: {fileID: 1154536071}
+  m_Layer: 0
+  m_Name: PlayerDisabler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1154536071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154536070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb60f7ba3c7eba847809a5b0e1b1912c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1282689942}
+  listenForInput: 0
+  onX:
+    m_PersistentCalls:
+      m_Calls: []
+  onY:
+    m_PersistentCalls:
+      m_Calls: []
+  onB:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1154536072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154536070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 25.035793, y: 2.1812248, z: 25.93984}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1200711982
 GameObject:
   m_ObjectHideFlags: 0
@@ -2909,7 +2964,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121762796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.1488214, y: -22.469574, z: 33.35576}
+  m_LocalPosition: {x: 32.88, y: 0, z: 26.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2931,8 +2986,8 @@ MonoBehaviour:
   height: 10
   resource: {fileID: 5643848922979499437, guid: 902257d6b363d6c4bab466699aa37609, type: 3}
   maxCount: 10
-  radius: 30
-  spawnRate: 3
+  radius: 10
+  spawnRate: 1
   count: 0
 --- !u!4 &543450652776284990 stripped
 Transform:
@@ -3067,6 +3122,10 @@ PrefabInstance:
       propertyPath: price3
       value: 
       objectReference: {fileID: 276397140}
+    - target: {fileID: 3345586127874805902, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
+      propertyPath: tower2
+      value: 
+      objectReference: {fileID: 7426894479845877989, guid: b16e2b42a494843478a6748d4931a43a, type: 3}
     - target: {fileID: 3345586127874805902, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
       propertyPath: resources
       value: 

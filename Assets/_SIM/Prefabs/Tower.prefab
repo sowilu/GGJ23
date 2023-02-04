@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bfade54523f08447a261d01f29cb4b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 15
+  range: 5
   bulletPrefab: {fileID: 2075106731374931286, guid: ea793ec34f3e2754aa58efacd9fdd509, type: 3}
   coolDown: 5
   body: {fileID: 71242258432351641}
