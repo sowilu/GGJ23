@@ -1352,11 +1352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5d06ceea504bb4fb982959a1369e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1002942589 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2498513775003364823, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
-  m_PrefabInstance: {fileID: 3345586128527946835}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1112968438
 GameObject:
   m_ObjectHideFlags: 0
@@ -3511,7 +3506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 10
   resource: {fileID: 5643848922979499437, guid: 902257d6b363d6c4bab466699aa37609, type: 3}
-  maxCount: 10
+  maxCount: 15
   radius: 10
   spawnRate: 1
   count: 0
@@ -3520,63 +3515,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3019471852672038765, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
   m_PrefabInstance: {fileID: 3345586128527946835}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &543450652776284994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002942589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeaf7f66ef1ce8c4fb3e3c12b9dc5ce2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  petals:
-  - {fileID: 3345586128527946843}
-  - {fileID: 3345586128527946841}
-  - {fileID: 3345586128527946839}
-  - {fileID: 3345586128527946837}
-  - {fileID: 3345586128527946842}
-  - {fileID: 3345586128527946840}
-  - {fileID: 3345586128527946838}
-  - {fileID: 3345586128527946836}
-  invinsibilityTime: 1
---- !u!114 &543450652776284995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002942589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c2c5359c339bcc40a9e205ff2091b7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHP: 100
-  onDamage:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 543450652776284994}
-        m_TargetAssemblyTypeName: Deflower, Assembly-CSharp
-        m_MethodName: TakeDamage
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  autoDestroy: 0
-  tweenDamage: 0
-  deathEffect: {fileID: 0}
-  damageEffect: {fileID: 0}
 --- !u!1001 &3148499122388803883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3753,49 +3691,8 @@ PrefabInstance:
       propertyPath: playerHands
       value: 
       objectReference: {fileID: 1282689942}
-    m_RemovedComponents:
-    - {fileID: 1215197517, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
---- !u!1 &3345586128527946836 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 346064662872791786, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
-  m_PrefabInstance: {fileID: 3345586128527946835}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3345586128527946837 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 228650478123005128, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
-  m_PrefabInstance: {fileID: 3345586128527946835}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3345586128527946838 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 75508910844043033, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
-  m_PrefabInstance: {fileID: 3345586128527946835}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3345586128527946839 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3972804879671121973, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
-  m_PrefabInstance: {fileID: 3345586128527946835}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3345586128527946840 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8404608443753274389, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
-  m_PrefabInstance: {fileID: 3345586128527946835}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3345586128527946841 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1790510992794911709, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
-  m_PrefabInstance: {fileID: 3345586128527946835}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3345586128527946842 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6132395189534698415, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
-  m_PrefabInstance: {fileID: 3345586128527946835}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3345586128527946843 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8956732620796170718, guid: 62959f11de7d44248a05f75ff93181e5, type: 3}
-  m_PrefabInstance: {fileID: 3345586128527946835}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5149596763486868994
 PrefabInstance:
   m_ObjectHideFlags: 0

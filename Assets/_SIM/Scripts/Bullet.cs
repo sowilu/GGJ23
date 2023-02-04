@@ -12,7 +12,8 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        transform.LookAt(target.position);
+        if(target != null)
+            transform.LookAt(target.position);
     }
 
     void Update()

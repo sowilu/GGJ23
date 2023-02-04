@@ -88,6 +88,8 @@ GameObject:
   - component: {fileID: 3345586127874805899}
   - component: {fileID: 3345586127874805892}
   - component: {fileID: 3345586127874805902}
+  - component: {fileID: 543450652776284994}
+  - component: {fileID: 543450652776284995}
   m_Layer: 0
   m_Name: Flowey
   m_TagString: Tower
@@ -171,8 +173,65 @@ MonoBehaviour:
   slot2Price: 2
   slot3Image: {fileID: 0}
   price3: {fileID: 0}
-  tower3: {fileID: 2136981435029190242, guid: 1b329b9b2a0da3441a8336eead0deb95, type: 3}
+  tower3: {fileID: 4243906043732056954, guid: 48eebdf59ddc91d418167753f9fa5520, type: 3}
   slot3Price: 3
+--- !u!114 &543450652776284994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498513775003364823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeaf7f66ef1ce8c4fb3e3c12b9dc5ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  petals:
+  - {fileID: 8956732620796170718}
+  - {fileID: 1790510992794911709}
+  - {fileID: 3972804879671121973}
+  - {fileID: 228650478123005128}
+  - {fileID: 6132395189534698415}
+  - {fileID: 8404608443753274389}
+  - {fileID: 75508910844043033}
+  - {fileID: 346064662872791786}
+  invinsibilityTime: 1
+--- !u!114 &543450652776284995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498513775003364823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2c5359c339bcc40a9e205ff2091b7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  onDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 543450652776284994}
+        m_TargetAssemblyTypeName: Deflower, Assembly-CSharp
+        m_MethodName: TakeDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  autoDestroy: 0
+  tweenDamage: 0
+  deathEffect: {fileID: 0}
+  damageEffect: {fileID: 0}
 --- !u!1001 &3345586129542893509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -320,9 +379,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a759174341aab06458649564f975c072, type: 3}
+--- !u!1 &75508910844043033 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3522412170131880892, guid: a759174341aab06458649564f975c072, type: 3}
+  m_PrefabInstance: {fileID: 3597916234097976485}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &228650478123005128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3657496453384491117, guid: a759174341aab06458649564f975c072, type: 3}
+  m_PrefabInstance: {fileID: 3597916234097976485}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &346064662872791786 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5394421497196675505, guid: a759174341aab06458649564f975c072, type: 3}
+  m_PrefabInstance: {fileID: 3597916234097976485}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1790510992794911709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6253404752491813000, guid: a759174341aab06458649564f975c072, type: 3}
+  m_PrefabInstance: {fileID: 3597916234097976485}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3919509080006722382 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a759174341aab06458649564f975c072, type: 3}
+  m_PrefabInstance: {fileID: 3597916234097976485}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3972804879671121973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 489873376911375504, guid: a759174341aab06458649564f975c072, type: 3}
   m_PrefabInstance: {fileID: 3597916234097976485}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &4408799809935792628 stripped
@@ -350,6 +434,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!1 &6132395189534698415 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1948658756212306166, guid: a759174341aab06458649564f975c072, type: 3}
+  m_PrefabInstance: {fileID: 3597916234097976485}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8404608443753274389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4229593525652752208, guid: a759174341aab06458649564f975c072, type: 3}
+  m_PrefabInstance: {fileID: 3597916234097976485}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8956732620796170718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5594290001059837307, guid: a759174341aab06458649564f975c072, type: 3}
+  m_PrefabInstance: {fileID: 3597916234097976485}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3867770292357470405
 PrefabInstance:
   m_ObjectHideFlags: 0

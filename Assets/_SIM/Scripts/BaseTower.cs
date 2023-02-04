@@ -19,7 +19,7 @@ public class BaseTower : MonoBehaviour
     public Transform body;
     public Transform cannon;
     
-    public OptiRingMesh _mesh;
+    //public OptiRingMesh _mesh;
     protected SphereCollider _sphereCollider;
     protected List<Transform> _inRangeEnemies = new List<Transform>();
     
@@ -33,7 +33,7 @@ public class BaseTower : MonoBehaviour
         _sphereCollider = GetComponent<SphereCollider>();
         _sphereCollider.isTrigger = true;
         _sphereCollider.radius = range;
-        _mesh.radius = range;
+        //_mesh.radius = range;
         
         body.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
         
