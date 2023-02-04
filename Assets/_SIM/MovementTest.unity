@@ -1712,6 +1712,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1282689954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311858786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2c5359c339bcc40a9e205ff2091b7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  autoDestroy: 0
+  tweenDamage: 0
+  deathEffect: {fileID: 0}
+  damageEffect: {fileID: 0}
 --- !u!1 &1294393397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1902,6 +1925,10 @@ PrefabInstance:
     - target: {fileID: 1639087483320928799, guid: be85086d3cf43eb4e86140371d2b48b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1639087483453026501, guid: be85086d3cf43eb4e86140371d2b48b1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -22.710022
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be85086d3cf43eb4e86140371d2b48b1, type: 3}

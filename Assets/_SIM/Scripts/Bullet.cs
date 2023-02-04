@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     public Transform target;
     
     public float speed = 10f;
-    public float damage = 5;
+    public int damage = 5;
     
     void Update()
     {
@@ -21,15 +21,19 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Player")
         {
-            print("Hit");
+            var health = other.gameObject.GetComponent<Health>();
+            if(health != null)
+            {
+                health.hp -= damage;
+            }
+            else
+            {
+                Destroy(other.gameObject);
+            }
             Destroy(gameObject);
         }
-        else if(other.gameObject.tag == "Player")
-        {
-            other.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
-            Destroy(gameObject);
-        }
+
     }
 }
