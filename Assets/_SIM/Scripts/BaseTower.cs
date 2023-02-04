@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using DG.Tweening;
 using SimVik;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BaseTower : MonoBehaviour
 {
+    [Header("Shooting")]
     public float range = 5f;
     public GameObject bulletPrefab;
-    
     public float coolDown = 1f;
 
+    [Header("Body")] 
+    public Transform body;
+    public Transform cannon;
+    
     public OptiRingMesh _mesh;
     protected SphereCollider _sphereCollider;
     protected List<Transform> _inRangeEnemies = new List<Transform>();
@@ -26,6 +31,8 @@ public class BaseTower : MonoBehaviour
         _sphereCollider.radius = range;
         _mesh.radius = range;
         
+        body.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+        
         InvokeRepeating(nameof(Activate), coolDown, coolDown);
     }
 
@@ -35,7 +42,7 @@ public class BaseTower : MonoBehaviour
         {
             //target first enemy
             var target = _inRangeEnemies[0];
-            var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            var bullet = Instantiate(bulletPrefab, cannon.position, Quaternion.identity);
             bullet.GetComponent<Bullet>().target = target;
         }
     }
@@ -57,8 +64,23 @@ public class BaseTower : MonoBehaviour
             _inRangeEnemies.Remove(other.transform);
         }
     }
-    
-    
+
+    private void Update()
+    {
+        if(_inRangeEnemies.Count > 0)
+        {
+            //target first enemy
+            var target = _inRangeEnemies[0];
+            
+            //rotate body towards target but only on y axis
+            var targetRotation = Quaternion.LookRotation(target.position - transform.position);
+            targetRotation.x = 0;
+            targetRotation.z = 0;
+            body.rotation = Quaternion.Slerp(body.rotation, targetRotation, Time.deltaTime * 15f);
+        }
+    }
+
+
     //if in unity editor mode
     #if UNITY_EDITOR
     private void OnDrawGizmosSelected()

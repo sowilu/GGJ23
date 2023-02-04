@@ -33,6 +33,24 @@ public class TowerManager : MonoBehaviour
 
         towers.Add(tower);
     }
+
+    public Transform GetNearest(Vector3 position)
+    {
+        Transform nearestTower = towers[0];
+        float nearestDistance = Vector3.Distance(position, nearestTower.position);
+        for (int i = 1; i < towers.Count; i++)
+        {
+            float distance = Vector3.Distance(position, towers[i].position);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestTower = towers[i];
+            }
+        }
+
+        return nearestTower;
+    }
+    
     
     //coroutine
     public IEnumerator GrowRoots(Transform tower)
@@ -53,24 +71,44 @@ public class TowerManager : MonoBehaviour
             }
 
             //create as many roots as will fit in given distance and spawn them in between
-            int rootCount = Mathf.FloorToInt(nearestDistance / rootLength);
+            int rootCount = Mathf.CeilToInt(nearestDistance / rootLength);
             Transform firstRoot = null;
-            for (int i = 0; i < rootCount; i++)
-            {
-                Vector3 spawnPos = Vector3.Lerp(nearestTower.position + Vector3.down, tower.position + Vector3.down, (float)i / rootCount);
-                //rotate root to face tower
-                Quaternion spawnRot = Quaternion.LookRotation(tower.position + Vector3.down - (nearestTower.position + Vector3.down));
+            Transform lastRoot = null;
 
-                if (i == 0)
+            if (rootCount > 1)
+            {
+                for (int i = 0; i < rootCount; i++)
                 {
-                    firstRoot = Instantiate(root, spawnPos, spawnRot).transform;
-                }
-                else
-                {
-                    Instantiate(root, spawnPos, spawnRot, firstRoot);
+                    Vector3 spawnPos = Vector3.Lerp(nearestTower.position + Vector3.down, tower.position + Vector3.down, (float)i / rootCount);
+                    //rotate root to face tower
+                    Quaternion spawnRot = Quaternion.LookRotation(tower.position + Vector3.down - (nearestTower.position + Vector3.down));
+    
+                    if (i == 0)
+                    {
+                        firstRoot = Instantiate(root, spawnPos, spawnRot).transform;
+                        lastRoot = firstRoot;
+                    }
+                    else
+                    {
+                        lastRoot = Instantiate(root, spawnPos, spawnRot, firstRoot).transform;
+                    }
+                    
                 }
             }
+            else
+            {
+                firstRoot = lastRoot = Instantiate(root, nearestTower.position + Vector3.down, Quaternion.LookRotation(tower.position + Vector3.down - (nearestTower.position + Vector3.down))).transform;
+            }
+            
 
+            //scale last root to fit
+            if (lastRoot != null)
+            {
+                var rootDistance = Vector3.Distance(lastRoot.position, tower.position);
+                lastRoot.transform.localScale = new Vector3(1, 1, rootDistance/rootLength);
+            }
+            
+            
             yield return new WaitForSeconds(0.3f);
 
             while (firstRoot.position.y < 0)

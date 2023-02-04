@@ -4,14 +4,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public int maxResourcesInHand = 10;
+    public int resourcesInHand;
     public BaseTower towerInHand;
+    
 
     public float speed = 10.0f;
     public float turnSpeed = 25.0f;
     public float jumpHeight = 2.0f;
     public Animator anim;
     public float invincibilityTime = 2.0f;
+    
+    [HideInInspector]
+    public bool choiceMode = false;
     
     private Rigidbody _rb;
     PlayerInput _input;
@@ -50,6 +55,32 @@ public class PlayerController : MonoBehaviour
     {
         _movedir = _input.actions["move"].ReadValue<Vector2>();
         
+        if (choiceMode)
+        {
+            if (resourcesInHand > 0)
+            {
+                Flowey.inst.AddResources(resourcesInHand);
+                //TODO: play sound
+                resourcesInHand = 0;
+            }
+            
+            if (_input.actions["x"].triggered)
+            {
+                Flowey.inst.BuySlot1();
+            }
+            if (_input.actions["y"].triggered)
+            {
+                Flowey.inst.BuySlot2();
+            }
+            if (_input.actions["b"].triggered)
+            {
+                Flowey.inst.BuySlot3();
+            }
+            return;
+        }
+        
+        
+        
         //if player is on the ground
         if (_isGrounded)
         {
@@ -64,8 +95,6 @@ public class PlayerController : MonoBehaviour
         if (_input.actions["b"].triggered)
         {
             Plant();
-            
-            
         }
 
         if (anim != null)
@@ -87,6 +116,8 @@ public class PlayerController : MonoBehaviour
                 anim.SetTrigger("action");
             }
             Instantiate(towerInHand, transform.position + transform.forward, Quaternion.identity);
+
+            towerInHand = null;
         }
         else
         {

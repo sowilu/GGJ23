@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Target
   - Tower
+  - Flowey
+  - Root
   layers:
   - Default
   - TransparentFX
