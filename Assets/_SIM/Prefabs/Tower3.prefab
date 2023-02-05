@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootSound: {fileID: 8300000, guid: 64e43e3c0751ebe4d9c837df39d1485a, type: 3}
   range: 15
-  bulletPrefab: {fileID: 2075106731374931286, guid: ea793ec34f3e2754aa58efacd9fdd509, type: 3}
+  bulletPrefab: {fileID: 6278500504477092705, guid: 2fa8ed58c751a964dac804208036d7ee, type: 3}
   coolDown: 1
   body: {fileID: 5217870832157997747}
   cannon: {fileID: 6813085014471936751}

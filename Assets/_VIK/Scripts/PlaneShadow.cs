@@ -16,7 +16,11 @@ public class PlaneShadow : MonoBehaviour
 
     private void LateUpdate()
     {
-        if( target != null)
+        if (target != null)
+        {
             transform.position = new Vector3(target.position.x, height, target.position.z);
+            transform.rotation = Quaternion.Euler(90,0, 0);
+        }
+            
     }
 }
