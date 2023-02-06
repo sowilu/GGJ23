@@ -17,18 +17,74 @@ MonoBehaviour:
     addHole: 1
     enemyTypes:
     - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
-      number: 5
+      number: 10
+  - spawnRate: 0.7
+    addHole: 0
+    enemyTypes:
+    - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
+      number: 10
+    - type: {fileID: 7579384103788614420, guid: b81ba6f6ff9a9904e98a50e76e9d9c1c, type: 3}
+      number: 10
+  - spawnRate: 1
+    addHole: 1
+    enemyTypes:
+    - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
+      number: 20
+    - type: {fileID: 7579384103788614420, guid: b81ba6f6ff9a9904e98a50e76e9d9c1c, type: 3}
+      number: 20
   - spawnRate: 1
     addHole: 0
     enemyTypes:
     - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
-      number: 5
+      number: 30
     - type: {fileID: 7579384103788614420, guid: b81ba6f6ff9a9904e98a50e76e9d9c1c, type: 3}
-      number: 5
-  - spawnRate: 2
+      number: 30
+  - spawnRate: 1.3
+    addHole: 1
+    enemyTypes:
+    - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
+      number: 40
+    - type: {fileID: 7579384103788614420, guid: b81ba6f6ff9a9904e98a50e76e9d9c1c, type: 3}
+      number: 40
+  - spawnRate: 1.6
+    addHole: 0
+    enemyTypes:
+    - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
+      number: 50
+    - type: {fileID: 7579384103788614420, guid: b81ba6f6ff9a9904e98a50e76e9d9c1c, type: 3}
+      number: 50
+  - spawnRate: 1.9
+    addHole: 1
+    enemyTypes:
+    - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
+      number: 50
+    - type: {fileID: 7579384103788614420, guid: b81ba6f6ff9a9904e98a50e76e9d9c1c, type: 3}
+      number: 50
+  - spawnRate: 2.2
+    addHole: 1
+    enemyTypes:
+    - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
+      number: 60
+    - type: {fileID: 7579384103788614420, guid: b81ba6f6ff9a9904e98a50e76e9d9c1c, type: 3}
+      number: 60
+  - spawnRate: 2.5
+    addHole: 1
+    enemyTypes:
+    - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
+      number: 70
+    - type: {fileID: 7579384103788614420, guid: b81ba6f6ff9a9904e98a50e76e9d9c1c, type: 3}
+      number: 70
+  - spawnRate: 2.8
+    addHole: 1
+    enemyTypes:
+    - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
+      number: 80
+    - type: {fileID: 7579384103788614420, guid: b81ba6f6ff9a9904e98a50e76e9d9c1c, type: 3}
+      number: 80
+  - spawnRate: 3.1
     addHole: 1
     enemyTypes:
     - type: {fileID: 7579384103788614420, guid: a9730d462385ca54389cc2a0551bdd0e, type: 3}
       number: 100
     - type: {fileID: 7579384103788614420, guid: b81ba6f6ff9a9904e98a50e76e9d9c1c, type: 3}
-      number: 50
+      number: 100

@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
     public Transform target;
     
     public float speed = 10f;
-    public int damage = 5;
+    public int damage = 20;
 
     public float ttl = 2f;
 

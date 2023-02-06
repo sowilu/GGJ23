@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 
@@ -56,8 +57,9 @@ public class WaveManager : MonoBehaviour
         currentWave++;
         OnWaveFinished.Invoke(currentWave);
 
-        await new WaitForSeconds(2f);
-        PowerManager.instance.OfferPowers();
+        await new WaitForSeconds(5f);
+        //PowerManager.instance.OfferPowers();
+        StartNewWave();
     }
     
     public void StartNewWave()
@@ -65,6 +67,7 @@ public class WaveManager : MonoBehaviour
         if (currentWave >= enemyWaves.waves.Count)
         {
             print("Game Completed !");
+            SceneManager.LoadScene(1);
             return;
         }
         

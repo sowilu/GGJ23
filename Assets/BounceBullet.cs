@@ -26,6 +26,11 @@ public class BounceBullet : MonoBehaviour
         {
             Boom();
         }*/
+        
+        if(collision.transform.CompareTag("Enemy") || collision.transform.CompareTag("Player"))
+        {
+            Die();
+        }
     }
 
     void Boom()

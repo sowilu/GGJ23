@@ -19,10 +19,10 @@ public class PowerCard : MonoBehaviour
 
     public void SetPower(PowerData power)
     {
-        powerData = power;
+        /*powerData = power;
         icon.sprite = power.icon;
         descriptionText.text = power.description;
-        titleText.text = power.displayName;
+        titleText.text = power.displayName;*/
     }
 
     private void OnValidate()

@@ -58,6 +58,8 @@ public class Flowey : MonoBehaviour
 
     private void Start()
     {
+        if (price1 == null || price2 == null || price3 == null) return;
+           
         price1.text = slot1Price.ToString();
         price2.text = slot2Price.ToString();
         price3.text = slot3Price.ToString();
@@ -121,6 +123,7 @@ public class Flowey : MonoBehaviour
 
     void Update()
     {
+        if(player == null) return;
         if (InRange(player.position))
         {
             choicesMenu.SetActive(true);

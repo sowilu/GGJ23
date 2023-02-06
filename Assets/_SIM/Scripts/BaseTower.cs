@@ -74,7 +74,7 @@ public class BaseTower : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if(_inRangeEnemies.Count > 0)
         {

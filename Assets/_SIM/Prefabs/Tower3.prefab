@@ -143,12 +143,14 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: 64e43e3c0751ebe4d9c837df39d1485a, type: 3}
   range: 15
   bulletPrefab: {fileID: 6278500504477092705, guid: 2fa8ed58c751a964dac804208036d7ee, type: 3}
-  coolDown: 1
+  coolDown: 3
   body: {fileID: 5217870832157997747}
   cannon: {fileID: 6813085014471936751}
   cannon2: {fileID: 7711649112102375648}
   cannon3: {fileID: 2877803034653991469}
   cannon4: {fileID: 5285748819180324565}
+  forwardForce: 10
+  upForce: 10
 --- !u!135 &4533496047399084962
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -218,7 +220,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

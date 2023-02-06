@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-
+        GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
         if(target == null)target = GameObject.Find("Flowey").transform;;
         _agent = GetComponent<NavMeshAgent>();
         

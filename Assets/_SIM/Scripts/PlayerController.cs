@@ -3,10 +3,12 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip scream;
     public TextMeshProUGUI resourceText;
     public AudioClip clip;
     public AudioClip plantGrow;
@@ -170,8 +172,9 @@ public class PlayerController : MonoBehaviour
                 anim.SetTrigger("action");
             }
             Instantiate(towerInHand, transform.position + transform.forward, Quaternion.identity);
-            soundEffects.PlayOneShot(plantGrow);
             towerInHand = null;
+            soundEffects.PlayOneShot(plantGrow);
+            
             seed.SetActive(false);
         }
         else
@@ -259,5 +262,16 @@ public class PlayerController : MonoBehaviour
     float HeightToVelocity(float height)
     {
         return Mathf.Sqrt(2 * height * gravity);
+    }
+
+    public void Die()
+    {
+        soundEffects.PlayOneShot(scream);
+        Invoke(nameof(EnterDeathScreen), scream.length);
+    }
+
+    public void EnterDeathScreen()
+    {
+        SceneManager.LoadScene(1);
     }
 }
